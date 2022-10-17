@@ -15,26 +15,40 @@ const { ListNode } = require("../extensions/list-node.js");
  */
 class Queue {
   constructor() {
-    this.queue = null;
-    this.values = {};
-    this.head = 0;
-    this.tail = 0;
+    this.head = null;
+    this.tail = null;
   }
 
   getUnderlyingList() {
-    return this.queue;
+    return this.head;
   }
 
-  enqueue(value) {
-    this.values[this.tail] = value;
-    this.tail++;
+  enqueue(element) {
+    const newNode = new ListNode(element);
+    newNode.value = element;
+    newNode.next = null;
+    if (!this.head) {
+      this.head = newNode;
+    } else {
+      let tail = this.head;
+      while (tail.next !== null) {
+        tail = tail.next;
+      }
+      tail.next = newNode;
+    }
   }
 
   dequeue() {
-    const element = this.values[this.head];
-    delete this.values[this.head];
-    this.head++;
-    return element;
+    if (!this.head) {
+      return undefined;
+    }
+    const del = this.head.value;
+    if (this.head.next) {
+      this.head = this.head.next;
+    } else {
+      this.head = null;
+    }
+    return del;
   }
 }
 
