@@ -16,16 +16,15 @@ const { ListNode } = require("../extensions/list-node.js");
 class Queue {
   constructor() {
     this.queue = null;
-   }
-    
-  getUnderlyingList() {
-    return this.queue;
-  }
-  constructor() {  
     this.values = {};
     this.head = 0;
     this.tail = 0;
   }
+
+  getUnderlyingList() {
+    return this.queue;
+  }
+
   enqueue(value) {
     this.values[this.tail] = value;
     this.tail++;
